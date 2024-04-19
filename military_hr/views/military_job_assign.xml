@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="military_job_assign_tree" model="ir.ui.view">
+        <field name="name">military.job.assign.tree</field>
+        <field name="model">military.job.assign</field>
+        <field name="arch" type="xml">
+            <tree string="Job Assignments">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="military_job_assign_form" model="ir.ui.view">
+        <field name="name">military.job.assign.form</field>
+        <field name="model">military.job.assign</field>
+        <field name="arch" type="xml">
+            <form string="Job Assignment">
+                <header>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        states="draft"
+                        string="Confirm"
+                        class="oe_highlight"
+                        groups="military_hr.military_job_assign"
+                    />
+                    <button
+                        name="action_done"
+                        type="object"
+                        states="confirm"
+                        string="Assign"
+                        class="oe_highlight"
+                        groups="military_hr.military_job_assign"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        states="confirm,pending"
+                        string="Cancel"
+                        class="oe_highlight"
+                        groups="military_hr.military_job_assign"
+                    />
+                    <button
+                        name="action_draft"
+                        type="object"
+                        states="cancel"
+                        string="Draft"
+                        class="oe_highlight"
+                        groups="military_hr.military_job_assign"
+                    />
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="partner_id"/>
+                        <field name="origin"/>
+                        <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                        />
+                        <field
+                                name="company_id"
+                                invisible="1"
+                                groups="!base.group_multi_company"
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Assignment Lines" name="assign_lines">
+                            <field
+                                name="assign_line"
+                                widget="section_and_note_one2many"
+                                mode="tree,kanban"
+                                attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                            >
+                                <tree string="Assign Lines" editable="bottom">
+                                    <control>
+                                        <create name="add_employee_control" string="Add"/>
+                                    </control>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="employee_id"/>
+                                    <field name="dst_job_id" placeholder="Leave empty to put at the desposal of commander" options="{'no_quick_create': True}"/>
+                                    <field name="temp" widget="boolean_toggle"/>
+                                    <field name="dst_department_id" options="{'no_quick_create': True}"/>
+                                    <field name="origin"/>
+                                    <field name="src_job_id"/>
+                                    <field name="src_department_id"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="open_military_job_assign" model="ir.actions.act_window">
+        <field name="name">Job Asignments</field>
+        <field name="res_model">military.job.assign</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

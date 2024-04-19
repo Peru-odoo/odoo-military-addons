@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="base.module_category_human_resources_employees" model="ir.module.category">
+        <field name="sequence">9</field>
+    </record>
+
+    <record id="military_hr_user" model="res.groups">
+        <field name="name">Officer : Manage all employees</field>
+        <field name="category_id" ref="base.module_category_human_resources_employees"/>
+        <field name="implied_ids" eval="[(6, 0, [ref('base.group_private_addresses'), ref('base.group_user')])]"/>
+        <field name="comment">The user will be able to approve document created by employees.</field>
+    </record>
+
+    <record id="military_hr_manager" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="comment">The user will have access to the human resources configuration as well as statistic reports.</field>
+        <field name="category_id" ref="base.module_category_human_resources_employees"/>
+        <field name="implied_ids" eval="[(4, ref('military_hr.military_hr_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="base.default_user" model="res.users">
+        <field name="groups_id" eval="[(4,ref('military_hr.military_hr_manager'))]"/>
+    </record>
+
+    <!-- Transfer Approval -->
+    <record id="military_job_assign" model="res.groups">
+        <field name="name">Approve Job Assignments</field>
+        <field name="category_id" ref="base.module_category_human_resources" />
+        <field
+            name="implied_ids"
+            eval="[(4, ref('military_hr.military_hr_manager')), (4, ref('base.group_system'))]"
+        />
+        <field name="users" eval="[(4, ref('base.user_root'))]" />
+        <field name="comment">
+            the user will be able to approve employee job assignments
+        </field>
+    </record>
+
+    <data noupdate="1">
+
+        <record id="military_job_assign_rule" model="ir.rule">
+            <field name="name">Employee Transfer Rule</field>
+            <field name="model_id" ref="model_military_job_assign" />
+            <field eval="True" name="global" />
+            <field name="domain_force">
+                ['|',('company_id','=',False),('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+        <record id="base.default_user" model="res.users">
+            <field name="groups_id" eval="[(4,ref('military_hr.military_hr_manager'))]"/>
+        </record>
+    </data>
+</odoo>

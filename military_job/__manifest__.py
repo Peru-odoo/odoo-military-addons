@@ -8,7 +8,7 @@
     "category": "Human Resources",
     "summary": "Military Jobs Improvements",
     "depends": ["hr",
-                "hr_recruitment",
+                # "hr_recruitment",
                 "military_rank",
                 "military_department",
                 "declension_ua"

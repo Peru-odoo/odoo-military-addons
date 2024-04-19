@@ -7949,7 +7949,7 @@ msgid ""
 "A partner with the same <span><span class=\"o_vat_label\">Tax ID</span></span> "
 "already exists ("
 msgstr ""
-"Партнер із таким же <span><span class=\"o_vat_label\">ID податку</span></span> "
+"Партнер із таким же <span><span class=\"o_vat_label\">ІПН</span></span> "
 "вже існує ("
 
 #. module: base
@@ -8422,12 +8422,12 @@ msgstr "Активувати"
 #. module: base
 #: model:ir.actions.server,name:base.action_server_module_immediate_install
 msgid "Activate Modules"
-msgstr "Активувати Модулі"
+msgstr "Активувати"
 
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.res_lang_form
 msgid "Activate and Translate"
-msgstr "Активувати та перекласти"
+msgstr "Активувати та Перекласти"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_cron__active
@@ -8458,7 +8458,7 @@ msgstr "Активно"
 #: model:ir.model.fields,field_description:base.field_res_partner__active_lang_count
 #: model:ir.model.fields,field_description:base.field_res_users__active_lang_count
 msgid "Active Lang Count"
-msgstr "Підрахунок активних мов"
+msgstr "Кількість Активних Мов"
 
 #. module: base
 #: model:ir.model.fields,field_description:base.field_ir_sequence__number_next_actual
@@ -17431,7 +17431,7 @@ msgstr "Онлайн-відстеження події"
 #. module: base
 #: model_terms:ir.ui.view,arch_db:base.view_base_language_install
 msgid "Load a Translation"
-msgstr "Завантажити переклад"
+msgstr "Завантажити Переклад"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.demo_force_install_action
@@ -23574,7 +23574,7 @@ msgstr "Пуерто Ріко"
 #: model:ir.module.module,shortdesc:base.module_purchase
 #: model_terms:ir.ui.view,arch_db:base.view_partner_form
 msgid "Purchase"
-msgstr "Купівля"
+msgstr "Закупівля"
 
 #. module: base
 #: model:ir.module.module,shortdesc:base.module_purchase_requisition
@@ -24753,7 +24753,7 @@ msgstr "Плануйте табелі під час відпустки"
 #: model:ir.model.fields.selection,name:base.selection__ir_actions_server__usage__ir_cron
 #: model_terms:ir.ui.view,arch_db:base.ir_cron_view_search
 msgid "Scheduled Action"
-msgstr "Запланована дія"
+msgstr "Запланована Дія"
 
 #. module: base
 #: model:ir.actions.act_window,name:base.ir_cron_act

@@ -9,7 +9,6 @@
                 <field name="date"/>
                 <field name="number"/>
                 <field name="partner_id"/>
-                <!--field name="company_id" groups="military_rank.group_rank_transfer"/-->
                 <field name="state"/>
             </tree>
         </field>

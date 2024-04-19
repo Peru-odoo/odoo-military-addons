@@ -1189,7 +1189,7 @@ msgstr "Серпень"
 #: code:addons/hr_holidays/static/src/dashboard/time_off_card.xml:0
 #, python-format
 msgid "Available"
-msgstr "В наявності"
+msgstr "Доступно"
 
 #. module: hr_holidays
 #. odoo-javascript
@@ -4248,7 +4248,7 @@ msgstr "та на"
 #: code:addons/hr_holidays/static/src/dashboard/time_off_card.xml:0
 #, python-format
 msgid "available"
-msgstr "в наявності"
+msgstr "доступно"
 
 #. module: hr_holidays
 #: model:ir.ui.menu,name:hr_holidays.menu_hr_available_holidays_report_tree

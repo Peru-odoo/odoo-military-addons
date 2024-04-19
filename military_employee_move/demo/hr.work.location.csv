@@ -1,0 +1,24 @@
+id,usage,name,parent_id/id
+hr_work_location_1,External,ВЛК,
+hr_work_location_2,External,СЗЧ,
+hr_work_location_3,External,Без вісти,
+hr_work_location_4,External,Полон,
+hr_work_location_5,Internal,Район виконання,
+hr_work_location_6,Internal,1 лінія,hr_work_location_5
+hr_work_location_7,Internal,Позиція АЛЬФА,hr_work_location_6
+hr_work_location_8,Internal,Позиція БРАВО,hr_work_location_6
+hr_work_location_9,Internal,Позиція ЧАРЛІ,hr_work_location_6
+hr_work_location_10,Internal,Позиція ДЕЛЬТА,hr_work_location_6
+hr_work_location_11,Internal,2 лінія,hr_work_location_5
+hr_work_location_12,Internal,Евакуаційний Пункт,hr_work_location_11
+hr_work_location_13,Internal,3 лінія,hr_work_location_5
+hr_work_location_14,Internal,Район відведення,
+hr_work_location_15,Internal,ППД,hr_work_location_14
+hr_work_location_16,Internal,Штаб,hr_work_location_14
+hr_work_location_17,Internal,Кухня,hr_work_location_14
+hr_work_location_18,Internal,Медичний Пункт,hr_work_location_14
+hr_work_location_19,Internal,Район зосередження,
+hr_work_location_20,External,Відпустка,
+hr_work_location_21,External,Лікування,
+hr_work_location_22,External,Гауптвахта,
+hr_work_location_23,External,Відрядження,

@@ -1,0 +1,662 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* military_employee_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-16 08:22+0000\n"
+"PO-Revision-Date: 2024-02-16 10:30+0200\n"
+"Last-Translator: Yevhen Babii <eugene.babiy@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: military_employee_move
+#: model:res.groups,comment:military_employee_move.group_hr_move
+msgid ""
+"\n"
+"            the user will be able to approve employee moves\n"
+"        "
+msgstr ""
+"\n"
+"            користувач матиме можливість підтверджувати переміщення "
+"військовослужбовців\n"
+"        "
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move_line__state
+msgid ""
+"* Draft: When the move is created and not yet confirmed.\n"
+"* Done: When the move is processed, the state is 'Done'."
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_needaction
+#, fuzzy
+msgid "Action Needed"
+msgstr "Необхідна Дія"
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.hr_move_form_view
+msgid "Add"
+msgstr "Додати"
+
+#. module: military_employee_move
+#: model:res.groups,name:military_employee_move.group_hr_move
+msgid "Approve Personell Moves"
+msgstr "Підтверджувати переміщення особового складу"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_type__code__incoming
+msgid "Arrival"
+msgstr "Прибуття"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__owner_id
+msgid "Assign Owner"
+msgstr "Призначити власника"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_attachment_count
+#, fuzzy
+msgid "Attachment Count"
+msgstr "Кількість Прикріплень"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move__state__cancel
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_line__state__cancel
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__color
+msgid "Color"
+msgstr "Колір"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__company_id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__company_id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__complete_name
+#, fuzzy
+msgid "Complete Name"
+msgstr "Повна Назва"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move__state__confirmed
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_line__state__confirmed
+msgid "Confirmed"
+msgstr "Підтверджено"
+
+#. module: military_employee_move
+#: model_terms:ir.actions.act_window,help:military_employee_move.hr_work_location_action
+msgid "Create a new work location"
+msgstr "Створити нове робоче розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__create_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__create_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__create_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__create_uid
+#, fuzzy
+msgid "Created by"
+msgstr "Автор"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__create_date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__create_date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__create_date
+#, fuzzy
+msgid "Created on"
+msgstr "Створено"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__create_date
+#, fuzzy
+msgid "Creation Date"
+msgstr "Дата Створення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__location_id
+msgid "Default Destination Location"
+msgstr "Типове Цільове Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_type__code__outgoing
+#, fuzzy
+msgid "Departure"
+msgstr "Вибуття"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__description
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__name
+msgid "Description"
+msgstr "Опис"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__description
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__description
+msgid "Description of Move"
+msgstr "Опис Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__partner_dest_id
+#, fuzzy
+msgid "Destination Address"
+msgstr "Адреса Призначення "
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__location_id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__location_dest_id
+msgid "Destination Location"
+msgstr "Цільове Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__display_name
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__display_name
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__display_name
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__display_name
+#, fuzzy
+msgid "Display Name"
+msgstr "Відображувана Назва"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move__state__done
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_line__state__done
+#, fuzzy
+msgid "Done"
+msgstr "Виконано"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move__state__draft
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_line__state__draft
+msgid "Draft"
+msgstr "Чернетка"
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_employee
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__employee_ids
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__employee_id
+msgid "Employee"
+msgstr "Військовослужбовець"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee__location_id
+msgid "Employee Location"
+msgstr "Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_move_line
+msgid "Employee Move"
+msgstr "Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee__move_ids
+msgid "Employee Moves"
+msgstr "Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_employee_status
+#, fuzzy
+msgid "Employee Status"
+msgstr "Статус Військовослужбовця"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_work_location__usage__external
+#, fuzzy
+msgid "External"
+msgstr "Зовнішнє"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_follower_ids
+msgid "Followers"
+msgstr "Підписники"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Підписники (Партнери)"
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.military_employee_move_location_filter
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+#, fuzzy
+msgid "Group By"
+msgstr "Групування"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__has_message
+msgid "Has Message"
+msgstr "Є повідомлення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__id
+msgid "ID"
+msgstr "ID"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__message_needaction
+#, fuzzy
+msgid "If checked, new messages require your attention."
+msgstr ""
+"Якщо відмічено, то нові повідомлення будуть потребувати вашої уваги."
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__message_has_error
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Якщо позначено, деякі повідомлення мають помилку доставки."
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_move_type__code__internal
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_work_location__usage__internal
+msgid "Internal"
+msgstr "Внутрішнє"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__inventory_id
+msgid "Inventory"
+msgstr "Склад"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_is_follower
+msgid "Is Follower"
+msgstr "Стежить"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status____last_update
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move____last_update
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line____last_update
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type____last_update
+#, fuzzy
+msgid "Last Modified on"
+msgstr "Востаннє Змінено"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee__last_move_id
+msgid "Last Move"
+msgstr "Крайнє Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee__last_move_date
+msgid "Last Move Date"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__write_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__write_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__write_uid
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__write_uid
+#, fuzzy
+msgid "Last Updated by"
+msgstr "Оновлено"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__write_date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__write_date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__write_date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__write_date
+#, fuzzy
+msgid "Last Updated on"
+msgstr "Дата Оновлення"
+
+#. module: military_employee_move
+#: model_terms:ir.actions.act_window,help:military_employee_move.action_hr_move
+#: model_terms:ir.actions.act_window,help:military_employee_move.action_hr_move_type
+msgid "Let's create a personell move."
+msgstr ""
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+#, fuzzy
+msgid "Location"
+msgstr "Розташування"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__usage
+#: model_terms:ir.ui.view,arch_db:military_employee_move.military_employee_move_location_filter
+msgid "Location Type"
+msgstr "Тип Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move_line__location_dest_id
+msgid "Location where the system will locate the Employee."
+msgstr ""
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.military_employee_move_location_filter
+msgid "Locations"
+msgstr "Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_main_attachment_id
+#, fuzzy
+msgid "Main Attachment"
+msgstr "Основне Прикріплення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_has_error
+#, fuzzy
+msgid "Message Delivery error"
+msgstr "Помилка Надсилання Повідомлення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_ids
+msgid "Messages"
+msgstr "Повідомлення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__date
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__date
+msgid "Move Date"
+msgstr "Дата"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__end_date
+msgid "Move End Date"
+msgstr ""
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.hr_move_form_view
+msgid "Move Lines"
+msgstr "Позиції Переміщення"
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+msgid "Move Name"
+msgstr "Назва"
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+msgid "Move Origin"
+msgstr "Підстава"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__move_type_id
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_type_form
+msgid "Move Type"
+msgstr "Тип Переміщення"
+
+#. module: military_employee_move
+#: model:ir.actions.act_window,name:military_employee_move.action_hr_move_type
+#: model:ir.actions.act_window,name:military_employee_move.open_hr_move_type
+#: model:ir.ui.menu,name:military_employee_move.menu_hr_move_type
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_type_filter
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_type_tree
+msgid "Move Types"
+msgstr "Типи Переміщень"
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+msgid "Moves"
+msgstr "Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__name
+#, fuzzy
+msgid "Name"
+msgstr "Назва"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__note
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__note
+msgid "Notes"
+msgstr "Примітки"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_needaction_counter
+#, fuzzy
+msgid "Number of Actions"
+msgstr "Кількість Дій"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_has_error_counter
+msgid "Number of errors"
+msgstr "Кількість помилок"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__message_has_error_counter
+#, fuzzy
+msgid "Number of messages with delivery error"
+msgstr "Кількість повідомлень з помилковою дставкою"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__move_type_id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__name
+msgid "Operation Type"
+msgstr "Тип Операції"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__move_line_ids
+msgid "Operations"
+msgstr "Операції"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move_line__partner_id
+msgid "Optional address where Employee is Located"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move_line__partner_dest_id
+msgid "Optional address where Employee is to be moved"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__parent_id
+msgid "Parent Location"
+msgstr "Головне Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__parent_path
+#, fuzzy
+msgid "Parent Path"
+msgstr "Головний Шлях"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__parent_id
+msgid "Parent Status"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__partner_id
+msgid "Partner"
+msgstr "Партнер"
+
+#. module: military_employee_move
+#: model:ir.ui.menu,name:military_employee_move.menu_hr_move
+#: model:ir.ui.menu,name:military_employee_move.menu_hr_move_tree
+#: model_terms:ir.ui.view,arch_db:military_employee_move.hr_move_form_view
+msgid "Personell Move"
+msgstr "Переміщення"
+
+#. module: military_employee_move
+#: model:ir.actions.act_window,name:military_employee_move.action_hr_move
+#: model:ir.actions.act_window,name:military_employee_move.open_hr_move
+msgid "Personell Moves"
+msgstr ""
+
+#. module: military_employee_move
+#: model_terms:ir.actions.act_window,help:military_employee_move.action_hr_move
+#: model_terms:ir.actions.act_window,help:military_employee_move.action_hr_move_type
+msgid "Ready to register personell move?"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__name
+#, fuzzy
+msgid "Reference"
+msgstr "Референс"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__origin
+msgid "Reference of the document"
+msgstr "Посилання документу"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__report_ids
+msgid "Reports"
+msgstr "Звіти"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__user_id
+msgid "Responsible"
+msgstr "Відповідальний"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Помилка доставки SMS"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__sequence
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__sequence
+#, fuzzy
+msgid "Sequence"
+msgstr "Нумерація"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__partner_id
+msgid "Source Address"
+msgstr "Вихідна Адреса"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__origin
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__origin
+msgid "Source Document"
+msgstr "Вихідний Документ"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__location_id
+msgid "Source Location"
+msgstr "Вихідне Розміщення"
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.hr_move_tree_view
+msgid "Staff Move"
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_move_type
+msgid "Staff Move Type"
+msgstr ""
+
+#. module: military_employee_move
+#: model_terms:ir.ui.view,arch_db:military_employee_move.view_hr_move_filter
+#, fuzzy
+msgid "State"
+msgstr "Статус"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee__status_id
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__state
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__state
+msgid "Status"
+msgstr "Статус"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_employee_status__description
+msgid "Status description"
+msgstr "Опис статусу"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__child_ids
+msgid "Sublocations"
+msgstr "Суброзміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_employee_status__child_ids
+msgid "Substatuses"
+msgstr "Субстатуси"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move_type__location_id
+msgid ""
+"This is the default destination location when you create a move manually "
+"with this operation type."
+msgstr ""
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__move_id
+#, fuzzy
+msgid "Transfer"
+msgstr "Присвоєння"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_line__move_partner_id
+msgid "Transfer Destination Address"
+msgstr "Цільова Адреса Переміщення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__move_type_code
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move_type__code
+msgid "Type of Operation"
+msgstr "Тип Операції"
+
+#. module: military_employee_move
+#: model:ir.model.fields.selection,name:military_employee_move.selection__hr_work_location__usage__view
+#, fuzzy
+msgid "View"
+msgstr "Відображення"
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_move__website_message_ids
+#, fuzzy
+msgid "Website Messages"
+msgstr "Повідомлення з Вебсайту"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__website_message_ids
+msgid "Website communication history"
+msgstr "Історія бесіди на сайті"
+
+#. module: military_employee_move
+#: model:ir.model.fields,help:military_employee_move.field_hr_move__owner_id
+msgid ""
+"When validating the transfer, the products will be assigned to this owner."
+msgstr ""
+"Під час підтвердження переміщення, товари будуть призначені їх власнику."
+
+#. module: military_employee_move
+#: model:ir.model.fields,field_description:military_employee_move.field_hr_work_location__address_id
+#, fuzzy
+msgid "Work Address"
+msgstr "Робоча Адреса"
+
+#. module: military_employee_move
+#: model:ir.model,name:military_employee_move.model_hr_work_location
+msgid "Work Location"
+msgstr "Розміщення"
+
+#. module: military_employee_move
+#: model:ir.actions.act_window,name:military_employee_move.hr_work_location_action
+#: model:ir.ui.menu,name:military_employee_move.menu_hr_work_location_tree
+msgid "Work Locations"
+msgstr "Розміщення"
+
+#. module: military_employee_move
+#. odoo-python
+#: code:addons/military_employee_move/models/hr_location.py:0
+#, python-format
+msgid "You cannot create recursive locations."
+msgstr "Неможливо створити рекурсивні розміщення."

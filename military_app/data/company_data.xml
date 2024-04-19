@@ -2,11 +2,14 @@
 <odoo>
     <data>
 
-        <record id="partner_demo" model="res.partner">
-            <field name="name">Демо</field>
+        <record id="base.main_company" model="res.company">
+            <field name="name">Військова частина А0000</field>
+            <field name="partner_id" ref="base.main_partner"/>
+            <field name="currency_id" ref="base.UAH"/>
+            <field name="logo" type="base64" file="military_app/static/description/icon.png"/>
         </record>
 
-        <record id="main_partner" model="res.partner">
+        <record id="base.main_partner" model="res.partner">
             <field name="name">Військова частина А0000</field>
             <field name="company_name">Військова частина А0000</field>
             <field name="street">вул. Невідома 100</field>
@@ -17,6 +20,7 @@
             <field name="phone">+380 99 123 456</field>
             <field name="email">info@a0000.com</field>
             <field name="website">www.a0000.com</field>
+            <field name="image_1920" type="base64" file="military_app/static/description/icon.png"/>
         </record>
 
     </data>

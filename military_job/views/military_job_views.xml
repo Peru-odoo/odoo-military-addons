@@ -10,12 +10,16 @@
             </xpath>
             <xpath expr="//h1//field[@name='name']/.." position="after">
                 <group>
-                    <field name="complete_name" string="Job Name" readonly="False"/>
-                    <field name="rank_id" string="Job Rank"/>
-                    <field name="mos" string="Job MOS code"/>
-                    <field name="no_of_employee"/>
-                    <field name="no_of_recruitment"/>
-                    <field name="expected_employees"/>
+                    <group>
+                       <field name="complete_name" string="Job Name" readonly="False"/>
+                        <field name="rank_id" string="Job Rank"/>
+                        <field name="mos" string="Job MOS code"/>
+                    </group>
+                    <group>
+                        <field name="no_of_recruitment"/>
+                        <field name="no_of_employee"/>
+                        <field name="expected_employees"/>
+                    </group>
                 </group>
             </xpath>
             <xpath expr="/form/sheet/notebook" position="inside">
@@ -26,6 +30,21 @@
                             <field name="name"/>
                         </tree>
                     </field>
+                </page>
+                <page name="declension" string="Name Declension" groups="hr.group_hr_user">
+                    <group>
+                        <group>
+                            <field name="name_gent" readonly="0"/>
+                            <field name="name_datv" readonly="0"/>
+                            <field name="name_ablt" readonly="0"/>
+                        </group>
+                        <group>
+                            <field name="complete_name_gent" readonly="0"/>
+                            <field name="complete_name_datv" readonly="0"/>
+                            <field name="complete_name_ablt" readonly="0"/>
+                        </group>
+
+                    </group>
                 </page>
             </xpath>
         </field>
@@ -55,36 +74,36 @@
         </field>
     </record>
 
-    <record id="view_job_filter" model="ir.ui.view">
-        <field name="model">hr.job</field>
-        <field name="inherit_id" ref="hr_recruitment.hr_job_search_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//searchpanel" position="replace">
-                <filter name="hired" string="Hired" domain="[('employee_ids', '!=', False)]"/>
-                <filter name="vacant" string="Vacant" domain="[('employee_ids', '=', False)]"/>
-                <searchpanel position="replace">
-                    <field name="company_id"
-                           select="multi"
-                           groups="base.group_multi_company"
-                           icon="fa-building"
-                           enable_counters="1"/>
-                    <field name="department_id"
-                           limit="0"
-                           groups="hr.group_hr_user"
-                           icon="fa-building"
-                           enable_counters="1"/>
-                    <field name="rank_id"
-                           select="multi"
-                           icon="fa-building"
-                           enable_counters="1"/>
-                    <field name="rank_category"
-                           select="multi"
-                           icon="fa-users"
-                           enable_counters="1"/>
-                </searchpanel>
-            </xpath>
-        </field>
-    </record>
+<!--    <record id="view_job_filter" model="ir.ui.view">-->
+<!--        <field name="model">hr.job</field>-->
+<!--        <field name="inherit_id" ref="hr_recruitment.hr_job_search_view"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//searchpanel" position="replace">-->
+<!--                <filter name="hired" string="Hired" domain="[('employee_ids', '!=', False)]"/>-->
+<!--                <filter name="vacant" string="Vacant" domain="[('employee_ids', '=', False)]"/>-->
+<!--                <searchpanel position="replace">-->
+<!--                    <field name="company_id"-->
+<!--                           select="multi"-->
+<!--                           groups="base.group_multi_company"-->
+<!--                           icon="fa-building"-->
+<!--                           enable_counters="1"/>-->
+<!--                    <field name="department_id"-->
+<!--                           limit="0"-->
+<!--                           groups="hr.group_hr_user"-->
+<!--                           icon="fa-building"-->
+<!--                           enable_counters="1"/>-->
+<!--                    <field name="rank_id"-->
+<!--                           select="multi"-->
+<!--                           icon="fa-building"-->
+<!--                           enable_counters="1"/>-->
+<!--                    <field name="rank_category"-->
+<!--                           select="multi"-->
+<!--                           icon="fa-users"-->
+<!--                           enable_counters="1"/>-->
+<!--                </searchpanel>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <record id="view_department_form" model="ir.ui.view">
         <field name="model">hr.department</field>
@@ -144,8 +163,17 @@
         </field>
     </record>
     <menuitem
-            id="menu_hr_job_tree"
+            id="menu_hr_job"
             action="hr.action_hr_job"
             parent="hr.menu_hr_root"
-            groups="hr.group_hr_user"/>
+            groups="hr.group_hr_user"
+    />
+    <menuitem
+            id="menu_hr_job_tree"
+            action="hr.action_hr_job"
+            parent="military_job.menu_hr_job"
+            groups="hr.group_hr_user"
+            sequence="1"
+    />
+
 </odoo>

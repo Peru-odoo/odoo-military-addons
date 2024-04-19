@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-23 08:22+0000\n"
-"PO-Revision-Date: 2023-12-31 10:00+0200\n"
+"PO-Revision-Date: 2024-02-07 15:07+0200\n"
 "Last-Translator: Yevhen Babii <eugene.babiy@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -199,7 +199,7 @@ msgstr ""
 #. module: stock
 #: model:ir.actions.report,print_report_name:stock.action_report_inventory
 msgid "'Count Sheet'"
-msgstr "'Склад - %s' % (object.name)"
+msgstr "Список Підрахунку"
 
 #. module: stock
 #: model:ir.actions.report,print_report_name:stock.action_report_delivery
@@ -580,7 +580,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:stock.product_form_view_procurement_button
 #: model_terms:ir.ui.view,arch_db:stock.product_template_form_view_procurement_button
 msgid "<span class=\"o_stat_text\">On Hand</span>"
-msgstr "<span class=\"o_stat_text\">В наявності</span>"
+msgstr "<span class=\"o_stat_text\">В Наявності</span>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_picking_form
@@ -673,12 +673,12 @@ msgstr ""
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_inventory
 msgid "<strong>Available Quantity</strong>"
-msgstr "<strong>Доступна кількість</strong>"
+msgstr "<strong>Доступна К-сть</strong>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_inventory
 msgid "<strong>Counted Quantity</strong>"
-msgstr "<strong>Підрахована кількість</strong>"
+msgstr "<strong>Підрахована Кількість</strong>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_delivery_document
@@ -724,7 +724,7 @@ msgstr "<strong>Мін к-сть :</strong>"
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_inventory
 msgid "<strong>On hand Quantity</strong>"
-msgstr "<strong>Кількість в наявності</strong>"
+msgstr "<strong>Кількість в Наявності</strong>"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_delivery_document
@@ -1243,7 +1243,7 @@ msgstr "При підтвердженні"
 #: model:ir.model.fields,field_description:stock.field_stock_picking__message_attachment_count
 #: model:ir.model.fields,field_description:stock.field_stock_scrap__message_attachment_count
 msgid "Attachment Count"
-msgstr "Підрахунок прикріплення"
+msgstr "Кількість Прикріплень"
 
 #. module: stock
 #: model:ir.ui.menu,name:stock.menu_attribute_action
@@ -1299,7 +1299,7 @@ msgstr "Наявні Товари"
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_form_editable
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_inventory_editable
 msgid "Available Quantity"
-msgstr "Кількість в наявності"
+msgstr "Доступна Кількість"
 
 #. module: stock
 #. odoo-python
@@ -1952,13 +1952,13 @@ msgstr "Кількість Комплектувань в Очікуванні"
 #: model:ir.actions.report,name:stock.action_report_inventory
 #, python-format
 msgid "Count Sheet"
-msgstr "Звіт підрахунку"
+msgstr "Список Підрахунку"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_quant__inventory_quantity
 #: model_terms:ir.ui.view,arch_db:stock.stock_inventory_conflict_form_view
 msgid "Counted Quantity"
-msgstr "Інвентаризовані кількості"
+msgstr "Підрахована Кількість"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_template_property_form
@@ -1969,19 +1969,19 @@ msgstr "Розміщення"
 #: model:ir.model.fields,field_description:stock.field_stock_picking_type__create_backorder
 #: model_terms:ir.ui.view,arch_db:stock.view_backorder_confirmation
 msgid "Create Backorder"
-msgstr "Створити дозамовлення"
+msgstr "Дозамовлення"
 
 #. module: stock
 #. odoo-python
 #: code:addons/stock/models/stock_picking.py:0
 #, python-format
 msgid "Create Backorder?"
-msgstr "Створити дозамовлення?"
+msgstr "Дозамовлення?"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_picking_type_form
 msgid "Create New"
-msgstr "Створити новий"
+msgstr "Створити Нове"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_move_line__picking_type_use_create_lots
@@ -2226,7 +2226,7 @@ msgstr "Розміщення Клієнта"
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_location_form
 msgid "Cyclic Counting"
-msgstr "Циклічний підрахунок"
+msgstr "Циклічний Підрахунок"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_res_config_settings__module_delivery_dhl
@@ -2552,7 +2552,7 @@ msgstr ""
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_lot__delivery_count
 msgid "Delivery order count"
-msgstr "Кількість замовлень на доставку"
+msgstr "Кількість доставок"
 
 #. module: stock
 #. odoo-python
@@ -3767,7 +3767,7 @@ msgstr "Імпорт"
 #: code:addons/stock/models/stock_quant.py:0
 #, python-format
 msgid "Import Template for Inventory Adjustments"
-msgstr "Шаблон Імпорту для Коригування Запасів"
+msgstr "Шаблон Імпорту для Інвентаризації"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_warehouse__in_type_id
@@ -3942,7 +3942,7 @@ msgstr ""
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_quant__inventory_quantity_auto_apply
 msgid "Inventoried Quantity"
-msgstr "Інвентаризовані кількості"
+msgstr "Підрахована Кількість"
 
 #. module: stock
 #: model:ir.actions.server,name:stock.action_view_inventory_tree
@@ -3962,23 +3962,23 @@ msgstr "Склад"
 #: model_terms:ir.ui.view,arch_db:stock.product_product_stock_tree
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_editable
 msgid "Inventory Adjustment"
-msgstr "Коригування залишків"
+msgstr "Інвентаризація"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_inventory_adjustment_name__inventory_adjustment_name
 msgid "Inventory Adjustment Name"
-msgstr "Номер Коригування Запасів"
+msgstr "Номер Інвентаризації"
 
 #. module: stock
 #: model:ir.actions.act_window,name:stock.action_stock_inventory_adjustement_name
 #: model:ir.model,name:stock.model_stock_inventory_adjustment_name
 msgid "Inventory Adjustment Reference / Reason"
-msgstr "Референс коригування запасів / Причина"
+msgstr "Примітка Інвентаризації / Причина"
 
 #. module: stock
 #: model:ir.model,name:stock.model_stock_inventory_warning
 msgid "Inventory Adjustment Warning"
-msgstr "Сповіщення коригування запасів"
+msgstr "Попередження при Інвентаризації"
 
 #. module: stock
 #. odoo-python
@@ -3986,12 +3986,12 @@ msgstr "Сповіщення коригування запасів"
 #: model:ir.ui.menu,name:stock.menu_action_inventory_tree
 #, python-format
 msgid "Inventory Adjustments"
-msgstr "Коригування Залишків"
+msgstr "Інвентаризація"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_inventory
 msgid "Inventory Count Sheet"
-msgstr "Таблиця підрахунку інвентаризації"
+msgstr "Таблиця Інвентаризації"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_request_count__inventory_date
@@ -4027,7 +4027,7 @@ msgstr "Втрати"
 #: code:addons/stock/static/src/stock_forecasted/forecasted_details.xml:0
 #, python-format
 msgid "Inventory On Hand"
-msgstr "Запаси в наявності"
+msgstr "Запаси в Наявності"
 
 #. module: stock
 #: model:ir.actions.act_window,name:stock.stock_picking_type_action
@@ -4193,12 +4193,12 @@ msgstr "Червень"
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.stock_inventory_conflict_form_view
 msgid "Keep Counted Quantity"
-msgstr "Кількість, що продовжує обчислюватися"
+msgstr "Залишити Підраховану Кількість"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.stock_inventory_conflict_form_view
 msgid "Keep Difference"
-msgstr "Різниця"
+msgstr "Залишити Різницю"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.stock_inventory_conflict_form_view
@@ -4248,7 +4248,7 @@ msgstr "Партнер останньої доставки"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location__last_inventory_date
 msgid "Last Effective Inventory"
-msgstr "Остання ефективна інвентаризація"
+msgstr "Крайня Інвентаризація"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_lot_label_layout____last_update
@@ -4456,7 +4456,8 @@ msgstr "Залишити пустим"
 #: model:ir.model.fields,help:stock.field_stock_route__company_id
 #: model:ir.model.fields,help:stock.field_stock_rule__route_company_id
 msgid "Leave this field empty if this route is shared between all companies"
-msgstr "Залиште це поле порожнім, якщо цей маршрут буде розподілено між усіма в/ч"
+msgstr ""
+"Залиште це поле порожнім, якщо цей маршрут буде розподілено між усіма в/ч"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.report_stock_rule
@@ -4994,12 +4995,12 @@ msgstr ""
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.quant_search_view
 msgid "My Counts"
-msgstr "Мої підрахунки"
+msgstr "Мої Підрахунки"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_picking_internal_search
 msgid "My Transfers"
-msgstr "Мої переміщення"
+msgstr "Мої Переміщення"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_removal__name
@@ -5013,13 +5014,13 @@ msgstr "Назва"
 #: model:ir.model.fields,field_description:stock.field_product_product__nbr_moves_in
 #: model:ir.model.fields,field_description:stock.field_product_template__nbr_moves_in
 msgid "Nbr Moves In"
-msgstr "К-сть переміщень в"
+msgstr "К-сть Надходжень"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_product__nbr_moves_out
 #: model:ir.model.fields,field_description:stock.field_product_template__nbr_moves_out
 msgid "Nbr Moves Out"
-msgstr "К-сть переміщень з"
+msgstr "К-сть Відвантажень"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.product_template_search_form_view_stock
@@ -5035,7 +5036,7 @@ msgstr "Негативні Запаси"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location__net_weight
 msgid "Net Weight"
-msgstr "Вага нетто"
+msgstr "Вага Нетто"
 
 #. module: stock
 #: model:ir.model.fields.selection,name:stock.selection__stock_picking_type__create_backorder__never
@@ -5056,7 +5057,7 @@ msgstr "Новий"
 #: code:addons/stock/models/stock_move_line.py:0
 #, python-format
 msgid "New Move:"
-msgstr "Нове переміщення:"
+msgstr "Нове Переміщення:"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_change_product_qty__new_quantity
@@ -5095,7 +5096,7 @@ msgstr "Тип Наступної Дії"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location__next_inventory_date
 msgid "Next Expected Inventory"
-msgstr "Наступна очікувана інвентаризація"
+msgstr "Наступна Інвентаризація"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_quant__inventory_date
@@ -5241,7 +5242,7 @@ msgstr "Звичайний"
 #: code:addons/stock/static/src/widgets/forecast_widget.xml:0
 #, python-format
 msgid "Not Available"
-msgstr "Немає в наявності"
+msgstr "Не Доступно"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.stock_reorder_report_search
@@ -5342,7 +5343,7 @@ msgstr "В Наявності"
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_editable
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_inventory_editable
 msgid "On Hand Quantity"
-msgstr "Кількість в наявності"
+msgstr "Кількість в Наявності"
 
 #. module: stock
 #: model:ir.model.fields,help:stock.field_stock_quant__available_quantity
@@ -7201,7 +7202,7 @@ msgstr "Зворотне Переміщення"
 #. module: stock
 #: model:ir.actions.server,name:stock.action_revert_inventory_adjustment
 msgid "Revert Inventory Adjustment"
-msgstr "Скасувати Коригування Залишків"
+msgstr "Скасувати Інвентаризацію"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_replenishment_option__route_id
@@ -7570,7 +7571,7 @@ msgstr "Нумерація Повернень"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_move__lot_ids
 msgid "Serial Numbers"
-msgstr "Серійні номери"
+msgstr "Серійні Номери"
 
 #. module: stock
 #. odoo-python
@@ -7618,7 +7619,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_inventory_editable
 #, python-format
 msgid "Set"
-msgstr "Встановіть"
+msgstr "Встановити"
 
 #. module: stock
 #: model:ir.model.fields.selection,name:stock.selection__stock_request_count__set_count__set
@@ -8443,7 +8444,7 @@ msgstr "Створене внутрішнє переміщення"
 #: code:addons/stock/models/stock_move_line.py:0
 #, python-format
 msgid "The inventory adjustments have been reverted."
-msgstr "Коригування запасів було скасовано."
+msgstr "Інвентаризацію було скасовано."
 
 #. module: stock
 #: model:ir.model.constraint,message:stock.constraint_stock_location_inventory_freq_nonneg
@@ -8999,22 +9000,22 @@ msgstr "Увесь прихід"
 #: model_terms:ir.ui.view,arch_db:stock.product_product_stock_tree
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_editable
 msgid "Total On Hand"
-msgstr "Всього в наявності"
+msgstr "Всього в Наявності"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.product_product_stock_tree
 msgid "Total Outgoing"
-msgstr "Всього на відгрузку"
+msgstr "Всього до Відвантаження"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_move_tree
 msgid "Total Quantity"
-msgstr "Загальна кількість"
+msgstr "Загальна Кількість"
 
 #. module: stock
 #: model_terms:ir.ui.view,arch_db:stock.view_stock_quant_tree_editable
 msgid "Total Reserved"
-msgstr "Всього зарезервовано"
+msgstr "Всього Зарезервовано"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_category__total_route_ids
@@ -9299,7 +9300,7 @@ msgstr "Одиниця Виміру"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_replenishment_option__uom
 msgid "Unit of Measure Name"
-msgstr "Назва одиниці вимірювання"
+msgstr "Назва Одиниці Виміру"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_product_replenish__product_uom_id
@@ -9605,7 +9606,7 @@ msgstr "Управління Складами"
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_location__warehouse_view_ids
 msgid "Warehouse View"
-msgstr "Перегляд складу"
+msgstr "Перегляд Складу"
 
 #. module: stock
 #: model:ir.model.fields,field_description:stock.field_stock_rule__propagate_warehouse_id
@@ -9622,7 +9623,7 @@ msgstr "Розміщення Відображення Складу"
 #: code:addons/stock/models/stock_warehouse.py:0
 #, python-format
 msgid "Warehouse's Routes"
-msgstr "Складські маршрути"
+msgstr "Складські Маршрути"
 
 #. module: stock
 #. odoo-javascript
@@ -10227,7 +10228,7 @@ msgid ""
 "\"view\" (%s)."
 msgstr ""
 "Ви не можете брати товари з або доставляти товари в місцезнаходження типу "
-"\"перегляд\" (%s)."
+"\"відображення\" (%s)."
 
 #. module: stock
 #. odoo-python

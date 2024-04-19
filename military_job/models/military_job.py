@@ -8,19 +8,27 @@ class Job(models.Model):
     _avoid_quick_create = True
 
     # TODO: check behaviour on archiving
-    name = fields.Char(string='Job Position', required=True, index='trigram', translate=False)
-    name_gent = fields.Char(string="Name Genitive",
-                            compute="_get_declension",
-                            help="Name in genitive declension (Whom/What)",
-                            store=True)
-    name_datv = fields.Char(string="Name Dative",
-                            compute="_get_declension",
-                            help="Name in dative declension (for Whom/ for What)",
-                            store=True)
-    name_ablt = fields.Char(string="Name Ablative",
-                            compute="_get_declension",
-                            help="Name in ablative declension (by Whom/ by What)",
-                            store=True)
+    name = fields.Char(
+        string='Job Position',
+        required=True,
+        index='trigram',
+        translate=False
+    )
+    name_gent = fields.Char(
+        string="Name Genitive",
+        compute="_get_declension",
+        help="Name in genitive declension (Whom / What)",
+        store=True)
+    name_datv = fields.Char(
+        string="Name Dative",
+        compute="_get_declension",
+        help="Name in dative declension (for Whom / for What)",
+        store=True)
+    name_ablt = fields.Char(
+        string="Name Ablative",
+        compute="_get_declension",
+        help="Name in ablative declension (by Whom / by What)",
+        store=True)
 
     @api.depends('name')
     def _get_declension(self):
@@ -31,13 +39,42 @@ class Job(models.Model):
             for field, value in inflected_fields.items():
                 setattr(record, field, value)
 
-    active = fields.Boolean('Active', default=True, store=True, readonly=False)
+    active = fields.Boolean(
+        'Active',
+        default=True,
+        store=True,
+        readonly=False
+    )
     sequence = fields.Integer(default=1)
-    level = fields.Integer('Level', store='True', related='department_id.level')
-    complete_name = fields.Char(string='Job Name',
-                                store='True',
-                                compute='_compute_complete_name',
-                                readonly='False')
+    level = fields.Integer(
+        'Level',
+        store='True',
+        related='department_id.level'
+    )
+    complete_name = fields.Char(
+        string='Job Name',
+        store='True',
+        compute='_compute_complete_name',
+        readonly='False'
+    )
+    complete_name_gent = fields.Char(
+        string="Complete Name Genitive",
+        compute="_compute_complete_name_declension",
+        help="Name in genitive declension (Whom / What)",
+        store=True
+    )
+    complete_name_datv = fields.Char(
+        string="Complete Name Dative",
+        compute="_compute_complete_name_declension",
+        help="Name in dative declension (for Whom / for What)",
+        store=True
+    )
+    complete_name_ablt = fields.Char(
+        string="Complete Name Ablative",
+        compute="_compute_complete_name_declension",
+        help="Name in ablative declension (by Whom / by What)",
+        store=True
+    )
     mos = fields.Char(string="Job MOS code")
     payroll_grade = fields.Char(string="Payroll Grade")
 
@@ -56,10 +93,22 @@ class Job(models.Model):
             else:
                 job.complete_name = '%s %s' % (job.name, job.company_id.name_gent)
 
+    @api.depends("name", "department_id.complete_name_gent", "company_id.name_gent")
+    def _compute_complete_name_declension(self):
+        for job in self:
+            job.complete_name_gent = job.name_gent
+            job.complete_name_datv = job.name_datv
+            job.complete_name_ablt = job.name_ablt
+            if job.name:
+                job.complete_name_gent = '%s %s' % (job.name_gent, job.department_id.complete_name_gent)
+                job.complete_name_datv = '%s %s' % (job.name_datv, job.department_id.complete_name_gent)
+                job.complete_name_ablt = '%s %s' % (job.name_ablt, job.department_id.complete_name_gent)
+
     @api.onchange('name', 'department_id')
     def _onchange_name(self):
         if self.name or self.department_id:
             self._compute_complete_name()
+            self._compute_complete_name_declension()
 
     def name_get(self):
         res = []
@@ -98,9 +147,6 @@ class HrEmployee(models.Model):
             'type': 'ir.actions.act_window',
             'view_id': False,
             'view_mode': 'tree',
-            # 'help': _('''<p class="oe_view_nocontent_create">
-            #                Click to assign new job
-            #             </p>'''),
             'limit': 80,
             'context': "{'employee_id': %s}" % self.id
         }

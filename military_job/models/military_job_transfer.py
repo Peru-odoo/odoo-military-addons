@@ -16,15 +16,19 @@ class HrTransfer(models.Model):
     _check_company_auto = True
     _order = "date desc"
 
-    number = fields.Char("Order Number",
-                         required=True,
-                         readonly=True,
-                         states={'draft': [('readonly', False)]})
-    complete_name = fields.Char("Complete Name",
-                                compute="_compute_complete_name",
-                                store=True,
-                                tracking=True,
-                                default="Noname")
+    name = fields.Char(
+        "Order Number",
+        required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]}
+    )
+    complete_name = fields.Char(
+        "Complete Name",
+        compute="_compute_complete_name",
+        store=True,
+        tracking=True,
+        default="Noname"
+    )
     state = fields.Selection([
         ('draft', 'Draft'),
         ('cancel', 'Cancelled'),
@@ -37,14 +41,16 @@ class HrTransfer(models.Model):
         index=True,
         default='draft',
         tracking=3)
-    date = fields.Date(string='Date',
-                       required=True,
-                       readonly=True,
-                       index=True,
-                       states={'draft': [('readonly', False)]},
-                       copy=False,
-                       default=fields.Date.today,
-                       help="Date of transfer")
+    date = fields.Date(
+        string='Date',
+        required=True,
+        readonly=True,
+        index=True,
+        states={'draft': [('readonly', False)]},
+        copy=False,
+        default=fields.Date.today,
+        help="Date of transfer"
+    )
     partner_id = fields.Many2one(
         'res.partner',
         string='Order Author',
@@ -56,28 +62,40 @@ class HrTransfer(models.Model):
         tracking=1,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         default=lambda self: self.env.company.partner_id)
-    transfer_line = fields.One2many('hr.transfer.line', 'transfer_id',
-                                    string='Transfer Lines',
-                                    states={'done': [('readonly', True)],
-                                            'confirm': [('readonly', True)]},
-                                    copy=True,
-                                    auto_join=True
-                                    )
-    employee_ids = fields.Many2many('hr.transfer.line', 'employee_id')
+    transfer_line = fields.One2many(
+        'hr.transfer.line',
+        'transfer_id',
+        string='Transfer Lines',
+        states={'done': [('readonly', True)],
+                'confirm': [('readonly', True)]},
+        copy=True,
+        auto_join=True
+    )
+    employee_ids = fields.Many2many(
+        'hr.transfer.line',
+        'employee_id')
     description = fields.Text('Description')
-    company_id = fields.Many2one('res.company',
-                                 'Company',
-                                 required=True,
-                                 index=True,
-                                 default=lambda self: self.env.company)
+    company_id = fields.Many2one(
+        'res.company',
+        'Company',
+        required=True,
+        index=True,
+        default=lambda self: self.env.company
+    )
+    origin = fields.Char(
+        'Basis',
+        index=True,
+        states={'done': [('readonly', True)], 'cancel': [('readonly', True)]},
+        help="Basis of the transfer"
+    )
 
-    @api.depends("number", "partner_id", "date")
+    @api.depends("name", "partner_id", "date")
     def _compute_complete_name(self):
         for rec in self:
-            number = rec.number if rec.number else ''
+            name = rec.name if rec.name else ''
             partner = rec.partner_id.name if rec.partner_id else ''
             date = rec.date.strftime("%d.%m.%Y") if rec.date else ''
-            rec.complete_name = "Наказ %s від %s №%s" % (partner, date, number)
+            rec.complete_name = "Наказ %s від %s №%s" % (partner, date, name)
 
     def effective_date_in_past(self):
         for transfer in self:
@@ -183,15 +201,19 @@ class HrTransferLine(models.Model):
     _rec_name = "date"
     _check_company_auto = True
 
-    transfer_id = fields.Many2one('hr.transfer',
-                                  string='Transfer Reference',
-                                  required=True,
-                                  ondelete='cascade',
-                                  index=True, copy=False)
-    transfer_partner_id = fields.Many2one(related='transfer_id.partner_id',
-                                          store=True,
-                                          string='Customer',
-                                          readonly=False)
+    transfer_id = fields.Many2one(
+        'hr.transfer',
+        string='Transfer Reference',
+        required=True,
+        ondelete='cascade',
+        index=True, copy=False
+    )
+    transfer_partner_id = fields.Many2one(
+        related='transfer_id.partner_id',
+        store=True,
+        string='Customer',
+        readonly=False
+    )
     state = fields.Selection(
         related='transfer_id.state',
         string='Transfer Status',
@@ -234,7 +256,6 @@ class HrTransferLine(models.Model):
     dst_job_id = fields.Many2one(
         string="Destination Job",
         comodel_name="hr.job",
-        required=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
         check_company=True,
@@ -242,17 +263,17 @@ class HrTransferLine(models.Model):
     )
     dst_department_id = fields.Many2one(
         string="Destination Department",
-        related="dst_job_id.department_id",
+        # related="dst_job_id.department_id",
         comodel_name="hr.department",
         store=True,
-        readonly=True,
+        required=True,
         check_company=True,
     )
     date = fields.Date(
         string="Effective Date",
         related="transfer_id.date",
-        required=True,
-        readonly=True
+        store=True,
+        readonly=True,
     )
     company_id = fields.Many2one(
         string="Company",
@@ -261,6 +282,19 @@ class HrTransferLine(models.Model):
         store=True,
         readonly=True,
     )
+    origin = fields.Char(
+        'Basis',
+        index=True,
+        states={'done': [('readonly', True)], 'cancel': [('readonly', True)]},
+        help="Basis of the transfer"
+    )
+
+    @api.onchange("dst_job_id")
+    def _onchange_dst_job(self):
+        if self.dst_job_id:
+            self.dst_department_id = self.dst_job_id.department_id
+        else:
+            ""
 
     @api.depends("employee_id")
     def _compute_onchange_employee(self):
@@ -335,7 +369,6 @@ class HrEmployee(models.Model):
                 ('employee_id', '=', employee.id),
                 ('state', '=', 'done'),
             ]
-            job_transfer_id = self.env['hr.transfer.line'].search(domain, limit=1, order='date desc')
-            # _logger.warning([product.name, last_line_id])
+            job_transfer_id = self.env['hr.transfer.line'].search(domain, limit=1,
+                                                                  order='date desc')
             employee.job_transfer_id = job_transfer_id.transfer_id
-            # employee.last_job_transfer_date = last_job_transfer_id.date if last_job_transfer_id else False

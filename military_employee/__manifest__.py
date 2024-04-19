@@ -10,7 +10,7 @@
     "license": "Other proprietary",
     "depends": [
         "hr",
-        "hr_recruitment",
+        # "hr_recruitment",
         "contacts",
         "declension_ua",
         "military_rank",

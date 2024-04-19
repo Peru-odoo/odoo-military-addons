@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="military_job_form" model="ir.ui.view">
+        <field name="name">military.job.form</field>
+        <field name="model">military.job</field>
+        <field name="arch" type="xml">
+            <form string="Job">
+                    <field name="active" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_button_box" name="button_box"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="e.g. Sales Manager"/></h1>
+                        </div>
+                        <group>
+                            <field name="complete_name" string="Job Name" readonly="False"/>
+                            <field name="rank_id" string="Job Rank"/>
+                            <field name="mos" string="Job MOS code"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Recruitment" name="recruitment_page">
+                                <group>
+                                    <group name="recruitment">
+                                        <field name="company_id" options="{'no_create': True}" invisible="1" groups="base.group_multi_company"/>
+                                        <field name="department_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="declension" string="Name Declension" groups="military_hr.military_hr_user">
+                                <group>
+                                    <group>
+                                        <field name="name_gent" readonly="0"/>
+                                        <field name="name_datv" readonly="0"/>
+                                        <field name="name_ablt" readonly="0"/>
+                                    </group>
+                                    <group>
+                                        <field name="complete_name_gent" readonly="0"/>
+                                        <field name="complete_name_datv" readonly="0"/>
+                                        <field name="complete_name_ablt" readonly="0"/>
+                                    </group>
+
+                                </group>
+                            </page>
+                            <page string="Job Summary" name="job_description_page">
+                                <field name="description" options="{'collaborative': true}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" options="{'open_attachments': True}"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+        </field>
+    </record>
+
+    <record id="military_job_tree" model="ir.ui.view">
+        <field name="name">military.job.tree</field>
+        <field name="model">military.job</field>
+        <field name="arch" type="xml">
+            <tree string="Job" sample="1">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="mos" optional="hide"/>
+                <field name="rank_id" optional="hide"/>
+                <field name="message_needaction" invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="company_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="military_job_filter" model="ir.ui.view">
+            <field name="name">military.job.search</field>
+            <field name="model">military.job</field>
+            <field name="arch" type="xml">
+                <search string="Jobs">
+                    <field name="name" string="Job Position"/>
+                    <field name="department_id" operator="child_of"/>
+                    <separator/>
+                    <filter name="message_needaction" string="Unread Messages" domain="[('message_needaction', '=', True)]"/>
+                    <separator/>
+                    <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                    <group>
+                        <filter name="hired" string="Hired" domain="[('employee_id', '!=', False)]"/>
+                        <filter name="vacant" string="Vacant" domain="[('employee_id', '=', False)]"/>
+                    </group>
+                    <group expand="0" string="Group By">
+                        <filter string="Department" name="department" domain="[]" context="{'group_by': 'department_id'}"/>
+                        <filter string="Company" name="company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                    <searchpanel>
+                        <field name="company_id"
+                               select="multi"
+                               groups="base.group_multi_company"
+                               icon="fa-building"
+                               enable_counters="1"/>
+                        <field name="department_id"
+                               limit="0"
+                               groups="military_hr.military_hr_user"
+                               icon="fa-building"
+                               enable_counters="1"/>
+                        <field name="rank_id"
+                               select="multi"
+                               icon="fa-building"
+                               enable_counters="1"/>
+                        <field name="rank_category"
+                               select="multi"
+                               icon="fa-users"
+                               enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+    <record id="action_military_job" model="ir.actions.act_window">
+            <field name="name">Job Positions</field>
+            <field name="res_model">military.job</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="military_job_filter"/>
+            <field name="context">{"search_default_Current":1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Ready to recruit more efficiently?
+              </p><p>
+                Let's create a job position.
+              </p>
+            </field>
+        </record>
+
+</odoo>

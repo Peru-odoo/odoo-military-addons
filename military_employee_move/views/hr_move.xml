@@ -21,58 +21,55 @@
         <field name="model">hr.move</field>
         <field name="arch" type="xml">
             <form string="Personell Move">
-                <header>
-                    <button
-                        name="action_confirm"
-                        type="object"
-                        states="draft"
-                        string="Confirm"
-                        class="oe_highlight"
-                        groups="military_employee_move.group_hr_move"
-                    />
-                    <button
-                        name="action_done"
-                        type="object"
-                        states="confirm"
-                        string="Assign"
-                        class="oe_highlight"
-                        groups="military_employee_move.group_hr_move"
-                    />
-                    <button
-                        name="action_cancel"
-                        type="object"
-                        states="confirm,pending"
-                        string="Cancel"
-                        class="oe_highlight"
-                        groups="military_employee_move.group_hr_move"
-                    />
-                    <button
-                        name="action_draft"
-                        type="object"
-                        states="cancel"
-                        string="Draft"
-                        class="oe_highlight"
-                        groups="military_employee_move.group_hr_move"
-                    />
-                    <field name="state" widget="statusbar"/>
-                </header>
+<!--                <header>-->
+<!--                    <button-->
+<!--                        name="action_confirm"-->
+<!--                        type="object"-->
+<!--                        states="draft"-->
+<!--                        string="Confirm"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="military_employee_move.group_hr_move"-->
+<!--                    />-->
+<!--                    <button-->
+<!--                        name="action_done"-->
+<!--                        type="object"-->
+<!--                        states="confirm"-->
+<!--                        string="Assign"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="military_employee_move.group_hr_move"-->
+<!--                    />-->
+<!--                    <button-->
+<!--                        name="action_cancel"-->
+<!--                        type="object"-->
+<!--                        states="confirm,pending"-->
+<!--                        string="Cancel"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="military_employee_move.group_hr_move"-->
+<!--                    />-->
+<!--                    <button-->
+<!--                        name="action_draft"-->
+<!--                        type="object"-->
+<!--                        states="cancel"-->
+<!--                        string="Draft"-->
+<!--                        class="oe_highlight"-->
+<!--                        groups="military_employee_move.group_hr_move"-->
+<!--                    />-->
+<!--                    <field name="state" widget="statusbar"/>-->
+<!--                </header>-->
                 <sheet>
                     <group>
-                        <field name="state" invisible="1"/>
-                        <field name="name"/>
-                        <field name="date"/>
-                        <field name="move_type_id"/>
-                        <field name="location_id"/>
-                        <field name="partner_id"/>
-                        <field
-                                name="company_id"
-                                groups="base.group_multi_company"
-                        />
-                        <field
-                                name="company_id"
-                                invisible="1"
-                                groups="!base.group_multi_company"
-                        />
+                        <group>
+                            <field name="state" invisible="1"/>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="origin"/>
+                        </group>
+                        <group>
+                            <field name="move_type_id"/>
+                            <field name="location_id"/>
+                            <field name="partner_id"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Move Lines" name="move_lines">
@@ -92,6 +89,7 @@
                                     <field name="partner_dest_id"/>
                                     <field name="note"/>
                                     <field name="origin"/>
+                                    <field name="name"/>
                                     <field name="state" invisible="1"/>
                                 </tree>
                             </field>
@@ -146,10 +144,5 @@
             </field>
         </record>
 
-        <menuitem
-            id="menu_hr_move_tree"
-            action="military_employee_move.action_hr_move"
-            parent="hr.menu_hr_root"
-            groups="hr.group_hr_user"/>
     </data>
 </odoo>

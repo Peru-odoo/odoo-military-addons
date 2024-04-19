@@ -49,7 +49,7 @@ msgstr "Додати"
 #. module: military_rank
 #: model:res.groups,name:military_rank.group_rank_transfer
 msgid "Approve Employee Rank Transfers"
-msgstr "Підтвердження Переміщень по Званнях"
+msgstr "Підтвердження присвоєння військових звань"
 
 #. module: military_rank
 #: model_terms:ir.ui.view,arch_db:military_rank.view_rank_filter

@@ -11,17 +11,17 @@ class HrMoveType(models.Model):
         required=True
     )
     color = fields.Integer('Color')
-    sequence = fields.Integer('Sequence')
-    sequence_id = fields.Many2one(
-        'ir.sequence',
-        'Reference Sequence',
-        check_company=True,
-        copy=False
-    )
-    sequence_code = fields.Char(
-        'Sequence Prefix',
-        required=True
-    )
+    # sequence = fields.Integer('Sequence')
+    # sequence_id = fields.Many2one(
+    #     'ir.sequence',
+    #     'Reference Sequence',
+    #     check_company=True,
+    #     copy=False
+    # )
+    # sequence_code = fields.Char(
+    #     'Sequence Prefix',
+    #     required=True
+    # )
     location_id = fields.Many2one(
         'hr.work.location',
         'Default Destination Location',

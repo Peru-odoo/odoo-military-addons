@@ -3113,7 +3113,7 @@ msgstr "Метод:"
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, python-format
 msgid "Missing Record"
-msgstr "Запису немає в наявності"
+msgstr "Запис Відсутній"
 
 #. module: web
 #. odoo-javascript
@@ -4675,7 +4675,7 @@ msgstr "Виберіть модель, щоб додати фільтр."
 #: code:addons/web/static/src/webclient/debug_items.js:0
 #, python-format
 msgid "Select a view"
-msgstr "Виберіть перегляд"
+msgstr "Виберіть відображення"
 
 #. module: web
 #. odoo-javascript

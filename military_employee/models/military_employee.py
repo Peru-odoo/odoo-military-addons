@@ -26,7 +26,7 @@ class HrEmployee(models.Model):
     department_id = fields.Many2one(
         related="job_id.department_id",
         store=True,
-        readonly=True
+        # readonly=True
     )
     parent_id = fields.Many2one(
         related="department_id.manager_id",
@@ -198,6 +198,13 @@ class HrEmployee(models.Model):
     @api.model
     def _get_name(self, last_name, first_name, middle_name):
         return " ".join(p for p in (last_name, first_name, middle_name) if p)
+
+    # @api.onchange("job_id")
+    # def _onchange_job(self):
+    #     if self.job_id:
+    #         self.department_id = self.job_id.department_id
+    #     else:
+    #         self.department_id = None
 
     @api.onchange("last_name", "first_name", "middle_name", "name", "rank_id", "job_title")
     def _onchange(self):

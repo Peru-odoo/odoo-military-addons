@@ -18,61 +18,67 @@ class DepartmentTag(models.Model):
 
 class Department(models.Model):
     _inherit = "hr.department"
-    _order = "level asc, sequence asc, name asc"
-    # _display_name = "complete_name"
+    _order = "level, sequence, name"
     _avoid_quick_create = True
 
     sequence = fields.Integer(default=1)
-    tag_ids = fields.Many2many(comodel_name="hr.department.tag",
-                               relation='hr_department_tag_rel',
-                               string="Tags")
-    user_ids = fields.Many2many('res.users',
-                                'hr_department_users_rel',
-                                'did',
-                                'user_id',
-                                string='Accepted Users'
-                                )
-    jobs_ids = fields.One2many('hr.job',
-                               compute='_compute_jobs_ids',
-                               string='Jobs')
-    member_ids = fields.One2many(comodel_name='hr.employee',
-                                 compute='_compute_member_ids',
-                                 string='Members',
-                                 readonly=True,
-                                 recursive=True,
-                                 )
-    code = fields.Char(string="Code",
-                       compute="_department_code",
-                       store=True,
-                       readonly=False)
+    tag_ids = fields.Many2many(
+        comodel_name="hr.department.tag",
+        relation='hr_department_tag_rel',
+        string="Tags"
+    )
+    # jobs_ids = fields.One2many(
+    #     'hr.job',
+    #     compute='_compute_jobs_ids',
+    #     string='Jobs',
+    #     recursive=True,
+    # )
+    member_ids = fields.One2many(
+        comodel_name='hr.employee',
+        compute='_compute_member_ids',
+        string='Members',
+        recursive=True,
+    )
+    code = fields.Char(
+        string="Code",
+        compute="_department_code",
+        store=True,
+        readonly=False
+    )
     level = fields.Integer(
         string="Level",
         compute="_compute_level",
         store=True,
         recursive=True
     )
-    commandor_id = fields.Many2one('hr.job',
-                                   string='Commandor',
-                                   required=True,
-                                   tracking=True,
-                                   domain="['|', '|', ('company_id', '=', False), ('company_id', '=', company_id), ('department_id', '=', id)]")
-    name_gent = fields.Char(string="Name Genitive",
-                            compute="_get_declension",
-                            help="Name in genitive declension (Whom/What)",
-                            store=True)
-    name_datv = fields.Char(string="Name Dative",
-                            compute="_get_declension",
-                            help="Name in dative declension (for Whom/for What)",
-                            store=True)
-    name_ablt = fields.Char(string="Name Ablative",
-                            compute="_get_declension",
-                            help="Name in ablative declension (by Whom/by What)",
-                            store=True)
-    complete_name_gent = fields.Char("Complete Name Genitive",
-                                     compute="_compute_complete_name_gent",
-                                     store=True,
-                                     recursive=True
-                                     )
+    commandor_id = fields.Many2one(
+        'hr.job',
+        string='Commandor',
+        tracking=True,
+    )
+    name_gent = fields.Char(
+        string="Name Genitive",
+        compute="_get_declension",
+        help="Name in genitive declension (Whom/What)",
+        store=True)
+    name_datv = fields.Char(
+        string="Name Dative",
+        compute="_get_declension",
+        help="Name in dative declension (for Whom/for What)",
+        store=True
+    )
+    name_ablt = fields.Char(
+        string="Name Ablative",
+        compute="_get_declension",
+        help="Name in ablative declension (by Whom/by What)",
+        store=True
+    )
+    complete_name_gent = fields.Char(
+        "Complete Name Genitive",
+        compute="_compute_complete_name_gent",
+        store=True,
+        recursive=True
+    )
 
     @api.model
     def _compute_member_ids(self):
@@ -119,7 +125,7 @@ class Department(models.Model):
             if dep.code:
                 name = "[%s] %s" % (dep.code, dep.complete_name.upper())
             else:
-                name = dep.name.upper()
+                name = dep.complete_name.upper()
             res.append((dep.id, name))
         return res
 
@@ -188,39 +194,44 @@ class Department(models.Model):
             for field, value in inflected_fields.items():
                 setattr(record, field, value)
 
-    total_employee = fields.Integer(string='Total Employee',
-                                    compute='_compute_total_employee',
-                                    store=False,
-                                    recursive=True
-                                    )
-    total_staff = fields.Integer(string='Total Staff',
-                                 compute='_compute_total_employee',
-                                 store=False,
-                                 recursive=True
-                                 )
-    total_vacant = fields.Integer(string='Total Vacant',
-                                  compute='_compute_total_employee',
-                                  store=False,
-                                  recursive=True
-                                  )
+    total_employee = fields.Integer(
+        'Total Employee',
+        compute='_compute_total_employee',
+        # store=True,
+        recursive=True
+    )
+    total_staff = fields.Integer(
+        'Total Staff',
+        compute='_compute_total_employee',
+        # store=True,
+        recursive=True
+    )
+    total_vacant = fields.Integer(
+        'Total Vacant',
+        compute='_compute_total_employee',
+        # store=True,
+        recursive=True
+    )
 
-    # TODO Fix calculations
-    @api.depends('member_ids', 'child_ids', 'jobs_ids')
+    @api.model
     def _compute_total_employee(self):
         for department in self:
             total_employee = len(department.member_ids)
             total_staff = 0
             total_vacant = 0
 
+            # Calculate staff and vacant positions from jobs
             for job in department.jobs_ids:
                 total_staff += job.no_of_recruitment
                 total_vacant += job.expected_employees
 
+            # Calculate totals for child departments
             for sub_department in department.child_ids:
-                total_employee += sub_department.total_employee
+                # total_employee += sub_department.total_employee
                 total_staff += sub_department.total_staff
                 total_vacant += sub_department.total_vacant
 
+            # Update the fields with the calculated values
             department.total_employee += total_employee
             department.total_staff += total_staff
             department.total_vacant += total_vacant

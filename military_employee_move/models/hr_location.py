@@ -6,6 +6,8 @@ class HrWorkLocation(models.Model):
     _inherit = 'hr.work.location'
     _description = 'Work Location'
     _parent_store = True
+    _parent_name = "parent_id"
+    _order = 'complete_name, id'
     _rec_name = 'complete_name'
 
     parent_id = fields.Many2one(
@@ -31,9 +33,20 @@ class HrWorkLocation(models.Model):
     address_id = fields.Many2one(
         'res.partner',
         required=False,
-        string="Work Address",
+        string='Work Address',
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"
     )
+    usage = fields.Selection([
+        ('view', 'View'),
+        ('internal', 'Internal'),
+        ('external', 'External')
+    ],
+        string='Location Type',
+        default='internal',
+        index=True,
+        required=True
+    )
+    status_id = fields.Many2one('hr.employee.status')
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
@@ -45,6 +58,6 @@ class HrWorkLocation(models.Model):
         for location in self:
             if location.parent_id:
                 location.complete_name = '%s / %s' % (
-                location.parent_id.complete_name, location.name)
+                    location.parent_id.complete_name, location.name)
             else:
                 location.complete_name = location.name

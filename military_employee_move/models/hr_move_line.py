@@ -5,27 +5,28 @@ from odoo.tools.mail import html2plaintext, is_html_empty
 class HrMoveLine(models.Model):
     _name = "hr.move.line"
     _description = "Employee Move"
-    _order = 'id asc'
+    _order = 'id desc'
 
-    name = fields.Char('Description',
-                       index=True,
-                       required=True)
-    sequence = fields.Integer('Sequence', default=10)
+    name = fields.Char(
+        'Description',
+        index=True,
+        required=True
+    )
+    sequence = fields.Integer('Sequence', default=1)
     create_date = fields.Datetime(
         'Creation Date',
         index=True,
         readonly=True
-        )
+    )
     date = fields.Date(
         'Move Date',
         related='move_id.date',
-        readonly=True,
         index=True,
-        required=True
-        )
+        store=True,
+    )
     end_date = fields.Datetime(
         'Move End Date', index=True
-        )
+    )
     company_id = fields.Many2one(
         'res.company',
         related='move_id.company_id',
@@ -54,11 +55,13 @@ class HrMoveLine(models.Model):
         help="Location where the system will locate the Employee."
     )
     partner_id = fields.Many2one(
-        'res.partner', 'Source Address',
+        'res.partner',
+        'Source Address',
         states={'done': [('readonly', True)]},
         help="Optional address where Employee is Located")
     partner_dest_id = fields.Many2one(
-        'res.partner', 'Destination Address',
+        'res.partner',
+        'Destination Address',
         states={'done': [('readonly', True)]},
         help="Optional address where Employee is to be moved")
     move_id = fields.Many2one(
@@ -86,9 +89,15 @@ class HrMoveLine(models.Model):
         readonly=True,
         help="* Draft: When the move is created and not yet confirmed.\n"
              "* Done: When the move is processed, the state is \'Done\'.")
-    origin = fields.Char("Source Document")  # ToDo Make link to document model
-    move_type_id = fields.Many2one('hr.move.type', 'Operation Type', check_company=True)
-    inventory_id = fields.Many2one('hr.inventory', 'Inventory', check_company=True)
+    origin = fields.Char("Basis")
+    move_type_id = fields.Many2one(
+        'hr.move.type',
+        'Operation Type',
+        check_company=True)
+    inventory_id = fields.Many2one(
+        'hr.inventory',
+        'Inventory',
+        check_company=True)
 
     def _get_description(self, move_type_id):
         """ return employee move description depending on

@@ -1,4 +1,4 @@
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class MilitaryRank(models.Model):
@@ -10,19 +10,31 @@ class MilitaryRank(models.Model):
 
     active = fields.Boolean("Active", default=True)
     sequence = fields.Integer(string="Sequence", required=True)
-    name = fields.Char(string="Name", store=True, required=True, index=True, translate=True)
-    name_gent = fields.Char(string="Name Genitive",
-                            help="Name in genitive declension (Whom/What)",
-                            store=True,
-                            required=True)
-    name_datv = fields.Char(string="Name Dative",
-                            help="Name in dative declension (for Whom/ for What)",
-                            store=True,
-                            required=True)
-    name_ablt = fields.Char(string="Name Ablative",
-                            help="Name in ablative declension (by Whom/ by What)",
-                            store=True,
-                            required=True)
+    name = fields.Char(
+        string="Name",
+        store=True,
+        required=True,
+        index=True,
+        translate=True
+    )
+    name_gent = fields.Char(
+        string="Name Genitive",
+        help="Name in genitive declension (Whom/What)",
+        store=True,
+        required=True
+    )
+    name_datv = fields.Char(
+        string="Name Dative",
+        help="Name in dative declension (for Whom/ for What)",
+        store=True,
+        required=True
+    )
+    name_ablt = fields.Char(
+        string="Name Ablative",
+        help="Name in ablative declension (by Whom/ by What)",
+        store=True,
+        required=True
+    )
 
     @api.depends('name')
     def _get_declension(self):
@@ -46,26 +58,41 @@ class MilitaryRank(models.Model):
     name_short = fields.Char(string="Shortname")
     nato_code = fields.Char(string="Nato Rank Code")
     description = fields.Text("Description")
-    parent_id = fields.Many2one("military.rank", string="Parent Rank", store=True)
+    parent_id = fields.Many2one(
+        "military.rank",
+        string="Parent Rank",
+        store=True
+    )
 
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
     _order = "rank_id desc"
 
-    rank_id = fields.Many2one("military.rank",
-                              string="Military Rank",
-                              groups="hr.group_hr_user",
-                              help="Current serviceman military rank",
-                              required=True,
-                              tracking=True
-                              )
-    rank_category = fields.Selection(related="rank_id.category", string="Rank Category", store=True)
+    rank_id = fields.Many2one(
+        "military.rank",
+        string="Military Rank",
+        groups="hr.group_hr_user",
+        help="Current serviceman military rank",
+        tracking=True,
+    )
+    rank_category = fields.Selection(
+        related="rank_id.category",
+        string="Rank Category",
+        store=True
+    )
 
 
 class Job(models.Model):
     _inherit = "hr.job"
     _display_name = "complete_name"
 
-    rank_id = fields.Many2one("military.rank", string="Job Rank")
-    rank_category = fields.Selection(related="rank_id.category", string="Rank Category", store=True)
+    rank_id = fields.Many2one(
+        "military.rank",
+        string="Job Rank"
+    )
+    rank_category = fields.Selection(
+        related="rank_id.category",
+        string="Rank Category",
+        store=True
+    )

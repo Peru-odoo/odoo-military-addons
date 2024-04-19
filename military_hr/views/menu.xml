@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--        Root menu-->
+        <menuitem
+                id="menu_military_hr_root"
+                name="Employees"
+                groups="military_hr.military_hr_manager,military_hr.military_hr_user"
+                web_icon="military_hr,static/description/icon.svg"
+                sequence="185"
+        />
+
+<!--Main menu-->
+        <menuitem
+                id="menu_military_hr_main"
+                name="Employees"
+                parent="menu_military_hr_root"
+                sequence="0"
+        />
+
+<!--Employees-->
+        <menuitem
+                id="menu_hr_employee"
+                name="Employees"
+                action="military_employee_action"
+                parent="menu_military_hr_root"
+                sequence="4"
+        />
+
+        <menuitem
+                id="menu_military_hr_reports"
+                name="Reporting"
+                parent="menu_military_hr_root"
+                sequence="95"
+        />
+
+<!--Configuration-->
+        <menuitem
+                id="menu_military_hr_configuration"
+                name="Configuration"
+                parent="menu_military_hr_root"
+                groups="military_hr.military_hr_manager"
+                sequence="100"
+        />
+
+        <menuitem
+                id="menu_config_employee"
+                name="Employee"
+                parent="menu_military_hr_configuration"
+                groups="military_hr.military_hr_manager"
+                sequence="10"
+        />
+
+        <menuitem
+                id="menu_military_employee_location_tree"
+                action="military_employee_location_action"
+                parent="menu_config_employee"
+                sequence="5"
+                groups="military_hr.military_hr_manager"
+        />
+<!--Departments-->
+            <menuitem
+                id="menu_hr_department"
+                action="military_hr.military_department_kanban_action"
+                parent="menu_military_hr_root"
+                groups="military_hr.military_hr_user"/>
+
+<!--Job menu-->
+        <menuitem
+                id="menu_hr_job"
+                action="military_hr.action_military_job"
+                parent="menu_military_hr_root"
+                groups="military_hr.military_hr_user"
+        />
+
+        <menuitem
+                id="menu_hr_job_tree"
+                action="action_military_job"
+                parent="menu_hr_job"
+                groups="military_hr.military_hr_user"
+                sequence="1"
+        />
+
+        <menuitem
+                id="menu_hr_assign"
+                action="open_military_job_assign"
+                parent="menu_hr_job"
+                sequence="2"
+        />
+
+<!--Rank menu-->
+        <menuitem
+                id="menu_view_rank_form"
+                action="military_hr.military_hr_rank_tree_action"
+                parent="menu_config_employee"
+                sequence="2"
+        />
+
+        <menuitem
+                id="menu_rank_assign"
+                action="open_rank_assign"
+                parent="military_hr.menu_config_employee"
+                sequence="3"
+        />
+    </data>
+</odoo>

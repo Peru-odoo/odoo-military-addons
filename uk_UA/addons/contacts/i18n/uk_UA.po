@@ -76,7 +76,7 @@ msgstr "Галузі"
 #. module: contacts
 #: model:ir.ui.menu,name:contacts.menu_localisation
 msgid "Localization"
-msgstr "Розміщення"
+msgstr "Локалізація"
 
 #. module: contacts
 #: model_terms:ir.actions.act_window,help:contacts.action_contacts

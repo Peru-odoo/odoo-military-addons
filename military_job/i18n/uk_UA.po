@@ -276,7 +276,7 @@ msgstr "ШПК"
 #: model:ir.actions.act_window,name:military_job.open_hr_transfer
 #: model:ir.ui.menu,name:military_job.menu_hr_transfer
 msgid "Job Transfers"
-msgstr "Переміщення по Посадах"
+msgstr "Призначення на Посади"
 
 #. module: military_job
 #. odoo-python

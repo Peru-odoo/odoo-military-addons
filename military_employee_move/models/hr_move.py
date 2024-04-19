@@ -1,5 +1,4 @@
-from odoo import _, api, fields, models
-from odoo.exceptions import AccessError, UserError
+from odoo import api, fields, models
 
 
 class HrMove(models.Model):
@@ -10,17 +9,14 @@ class HrMove(models.Model):
     _order = "id desc"
 
     name = fields.Char(
-        'Reference',
-        default='/',
+        'Number',
         copy=False,
-        index='trigram',
-        readonly=True
     )
     origin = fields.Char(
-        'Source Document',
+        'Basis',
         index=True,
         states={'done': [('readonly', True)], 'cancel': [('readonly', True)]},
-        help="Reference of the document"
+        help="Basis of the movement"
     )
     note = fields.Text('Notes')
     state = fields.Selection([
@@ -118,113 +114,3 @@ class HrMove(models.Model):
     def onchange_move_type_id(self):
         for move in self:
             move.location_id = move.move_type_id.location_id
-
-    @api.model
-    def create(self, vals):
-        defaults = self.default_get(['name', 'move_type_id'])
-        move_type = self.env['hr.move.type'].browse(
-            vals.get('move_type_id', defaults.get('move_type_id')))
-        if vals.get('name', '/') == '/' and defaults.get('name', '/') == '/' and vals.get(
-                'move_type_id', defaults.get('move_type_id')):
-            if move_type.sequence_id:
-                vals['name'] = move_type.sequence_id.next_by_id()
-        moves = vals.get('move_lines', [])
-        if moves and ((vals.get('location_id') and vals.get('location_dest_id')) or vals.get(
-                'partner_id')):
-            for move in moves:
-                if len(move) == 3 and move[0] == 0:
-                    if vals.get('location_id') and vals.get('location_dest_id'):
-                        move[2]['location_id'] = vals['location_id']
-                        move[2]['location_dest_id'] = vals['location_dest_id']
-                        move_type = self.env['hr.move.type'].browse(
-                            vals['move_type_id'])
-                        if 'move_type_id' not in move[2] or move[2]['move_type_id'] != move_type.id:
-                            move[2]['move_type_id'] = move_type.id
-                            move[2]['company_id'] = move_type.company_id.id
-                    if vals.get('partner_id'):
-                        move[2]['partner_id'] = vals.get('partner_id')
-        res = super(HrMove, self).create(vals)
-        # res._autoconfirm_move()
-        if vals.get('move_type_id'):
-            for move in res.move_lines:
-                if not move.description_move:
-                    move.description_move = move.employee_id.with_context(
-                        lang=move._get_lang())._get_description(move.move_id.move_type_id)
-        return res
-
-    def write(self, vals):
-        if vals.get('move_type_id') and any(move.state != 'draft' for move in self):
-            raise UserError(
-                _("Changing the operation type of this record is forbidden at this point."))
-        # set partner as a follower and unfollow old partner
-        res = super(HrMove, self).write(vals)
-        after_vals = {}
-        if vals.get('location_id'):
-            after_vals['location_id'] = vals['location_id']
-        if vals.get('location_dest_id'):
-            after_vals['location_dest_id'] = vals['location_dest_id']
-        if 'partner_id' in vals:
-            after_vals['partner_id'] = vals['partner_id']
-        if vals.get('move_lines'):
-            self.action_confirm()
-        return res
-
-    def action_confirm(self):
-        self._check_company()
-        self.mapped('move_lines').filtered(lambda move: move.state == 'draft')._action_confirm()
-        return True
-
-    def unlink(self):
-        self.mapped('move_lines')._action_cancel()
-        self.with_context(prefetch_fields=False).mapped(
-            'move_lines').unlink()  # Checks if moves are not done
-        return super(HrMove, self).unlink()
-
-    def _check_permission_group(self, group=None):
-
-        for move in self:
-            if group and not move.user_has_groups(group):
-                raise AccessError(
-                    _("You don't have the access rights to take this action.")
-                )
-            else:
-                continue
-        return True
-
-    def action_assign_partner(self):
-        for move in self:
-            move.move_lines.write({'partner_id': move.partner_id.id})
-
-    def action_cancel(self):
-        self.mapped('move_lines')._action_cancel()
-        self.write({'is_locked': True})
-        self.filtered(lambda x: not x.move_lines).state = 'cancel'
-        return True
-
-    def action_draft(self):
-        self.ensure_one()
-        has_permission = self._check_permission_group(
-            "military_employee_move.group_hr_move"
-        )
-        if has_permission:
-            self.write({"state": "draft"})
-
-    def action_done(self):
-        self._check_company()
-
-        todo_moves = self.mapped('move_lines').filtered(
-            lambda self: self.state in ['draft', 'confirmed'])
-        for move in self:
-            if move.owner_id:
-                move.move_lines.write({'restrict_partner_id': move.owner_id.id})
-                move.move_line_ids.write({'owner_id': move.owner_id.id})
-        todo_moves._action_done(cancel_backorder=self.env.context.get('cancel_backorder'))
-        self.write({'date': fields.Date.today(), 'priority': '0'})
-
-        # if incoming moves make other confirmed/partially_available moves available, assign them
-        done_incoming_moves = self.filtered(
-            lambda p: p.move_type_id.code == 'incoming').move_lines.filtered(
-            lambda m: m.state == 'done')
-        done_incoming_moves._trigger_assign()
-
-        return True

@@ -76,8 +76,12 @@
             <field name="arch" type="xml">
                 <field name="id" invisible="1"/>
                 <xpath expr="//h1//field[@name='name']/.." position="after">
-                    <field name="rank_id" placeholder="Military Rank" widget="selection" attrs="{'readonly': [('id', '!=', False)]}"/>
-                    <field name="rank_transfer_id"/>
+                    <group>
+                        <group>
+                            <field name="rank_id" placeholder="Military Rank" widget="selection" attrs="{'readonly': [('id', '!=', False)]}"/>
+                            <field name="rank_transfer_id"/>
+                        </group>
+                    </group>
                 </xpath>
             </field>
         </record>

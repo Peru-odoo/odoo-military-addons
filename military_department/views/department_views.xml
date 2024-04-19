@@ -24,7 +24,7 @@
             </field>
             <field name="name" position="after">
                     <field name="complete_name" readonly="False"/>
-                    <field name="commandor_id" readonly="False"/>
+                    <field name="commandor_id" domain="[('department_id','=',active_id)]" readonly="False"/>
                     <field name="code"/>
                     <field name="level" invisible="True"/>
             </field>
@@ -37,13 +37,22 @@
                         <field name="complete_name_gent" readonly="False"/>
                     </group>
                 </page>
+                <page name="employees" string="Employees" groups="hr.group_hr_user">
+                    <field name="member_ids">
+                        <tree>
+                            <field name="name"/>
+                            <field name="parent_id"/>
+                            <field name="department_id"/>
+                        </tree>
+                    </field>
+                </page>
             </notebook>
         </field>
     </record>
 
     <record id="military_department_tree" model="ir.ui.view">
         <field name="model">hr.department</field>
-        <field name="inherit_id" ref="hr.view_department_tree" />
+        <field name="inherit_id" ref="hr.view_department_tree"/>
         <field name="arch" type="xml">
             <field name="display_name" position="before">
                 <field name="sequence" widget="handle"/>
@@ -77,11 +86,12 @@
         </field>
     </record>
 
-    <record id="hr_department_kanban_action" model="ir.actions.act_window">
+    <record id="hr.hr_department_kanban_action" model="ir.actions.act_window">
         <field name="name">Departments</field>
         <field name="res_model">hr.department</field>
         <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_core': 1}</field>
         <field name="search_view_id" ref="hr.view_department_filter"/>
-        <field name="context">{"search_default_Core": 1}</field>
+
     </record>
 </odoo>

@@ -12,16 +12,19 @@
     'depends': [
         'base',
         'hr',
-        'generic_location',
         'military_employee',
     ],
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
-        'views/hr_move_type.xml',
         'views/hr_move.xml',
+        'views/hr_move_type.xml',
         'views/hr_location.xml',
         'views/hr_employee.xml',
+        'views/menu.xml',
+    ],
+    'demo': [
+        'demo/hr.work.location.csv',
     ],
     'installable': True,
     'application': False,

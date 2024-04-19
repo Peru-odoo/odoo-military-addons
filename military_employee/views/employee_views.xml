@@ -8,16 +8,16 @@
         <field name="arch" type="xml">
             <xpath expr="//h1//field[@name='name']/.." position="after">
                 <group>
-                    <field name="last_name" required="1"/>
-                    <field name="first_name" required="1"/>
-                    <field name="middle_name" required="1"/>
-                    <field name="callsign"/>
-                    <field name="complete_name" widget="CopyClipboardChar"/>
-                </group>
-            </xpath>
-            <xpath expr="//h1//field[@name='name']/.." position="after">
-                <group>
-                    <field name="service_type" required="1"/>
+                    <group>
+                        <field name="last_name" required="1"/>
+                        <field name="first_name" required="1"/>
+                        <field name="middle_name" required="1"/>
+                    </group>
+                    <group>
+                        <field name="callsign"/>
+                        <field name="service_type" required="1"/>
+<!--                        <field name="complete_name" widget="CopyClipboardChar" />-->
+                    </group>
                 </group>
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
@@ -87,13 +87,13 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_open_status_employee">
-        <field name="name">Employee Status</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hr.employee</field>
-        <field name="view_mode">kanban,form,tree</field>
-        <field name="context">{}</field>
-    </record>
+<!--    <record model="ir.actions.act_window" id="action_open_status_employee">-->
+<!--        <field name="name">Employee Status</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">hr.employee</field>-->
+<!--        <field name="view_mode">kanban,form,tree</field>-->
+<!--        <field name="context">{}</field>-->
+<!--    </record>-->
 
     <record id="hr_employee_kanban_view" model="ir.ui.view">
             <field name="name">Military Employee Kanban</field>
@@ -106,6 +106,9 @@
                 <field name="job_title" position="after">
                         <li t-if="record.mobile_phone.raw_value" class="o_force_ltr">
                             <field name="mobile_phone"/>
+                        </li>
+                        <li t-if="record.callsign.raw_value" class="o_force_ltr">
+                            <field name="callsign"/>
                         </li>
                 </field>
 <!--                <xpath expr="//kanban/templates/t/div" position="inside">-->
@@ -130,6 +133,7 @@
                 <field name="last_name" optional="hide"/>
                 <field name="first_name" optional="hide"/>
                 <field name="middle_name" optional="hide"/>
+                <field name="callsign" optional="hide"/>
             </field>
             <field name="name" position="attributes">
                     <attribute name="optional">"hide"</attribute>

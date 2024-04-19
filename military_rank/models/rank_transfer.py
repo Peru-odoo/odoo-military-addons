@@ -9,13 +9,18 @@ class RankTransfer(models.Model):
     _rec_name = "complete_name"
     _check_company_auto = True
 
-    number = fields.Char("Order Number", required=True, readonly=True,
-                         states={'draft': [('readonly', False)]})
-    complete_name = fields.Char("Complete Name",
-                                compute="_compute_complete_name",
-                                store=True,
-                                tracking=True,
-                                default="Noname")
+    number = fields.Char(
+        "Order Number",
+        required=True,
+        readonly=True,
+        states={'draft': [('readonly', False)]}
+    )
+    complete_name = fields.Char(
+        "Complete Name",
+        compute="_compute_complete_name",
+        store=True,
+        tracking=True,
+        default="Noname")
     state = fields.Selection([
         ('draft', 'Draft'),
         ('cancel', 'Cancelled'),
@@ -28,15 +33,16 @@ class RankTransfer(models.Model):
         tracking=3,
         default='draft'
     )
-    date = fields.Date(string='Date',
-                       required=True,
-                       readonly=True,
-                       index=True,
-                       states={'draft': [('readonly', False)]},
-                       copy=False,
-                       default=fields.Date.today,
-                       help="Date of transfer"
-                       )
+    date = fields.Date(
+        string='Date',
+        required=True,
+        readonly=True,
+        index=True,
+        states={'draft': [('readonly', False)]},
+        copy=False,
+        default=fields.Date.today,
+        help="Date of transfer"
+    )
     partner_id = fields.Many2one(
         'res.partner',
         string='Order Author',
@@ -168,18 +174,22 @@ class RankTransferLine(models.Model):
     _rec_name = "date"
     _check_company_auto = True
 
-    transfer_id = fields.Many2one('rank.transfer',
-                                  string='Transfer Reference',
-                                  required=True,
-                                  ondelete='cascade',
-                                  index=True, copy=False)
-    transfer_partner_id = fields.Many2one(related='transfer_id.partner_id',
-                                          store=True,
-                                          string='Customer',
-                                          readonly=False)
+    transfer_id = fields.Many2one(
+        'rank.transfer',
+        string='Transfer Reference',
+        required=True,
+        ondelete='cascade',
+        index=True, copy=False)
+    transfer_partner_id = fields.Many2one(
+        related='transfer_id.partner_id',
+        store=True,
+        string='Customer',
+        readonly=False
+    )
     date = fields.Date(
         string="Effective Date",
         related="transfer_id.date",
+        store=True,
     )
     state = fields.Selection(string="State", related="transfer_id.state")
     company_id = fields.Many2one(
@@ -200,7 +210,6 @@ class RankTransferLine(models.Model):
     src_rank = fields.Many2one(
         string="From Rank",
         comodel_name="military.rank",
-        # related="employee_id.rank_id",
         compute="_compute_rank",
         store=True,
         readonly=True
@@ -208,11 +217,6 @@ class RankTransferLine(models.Model):
     dst_rank = fields.Many2one(
         string="Destination Rank",
         comodel_name="military.rank",
-        # TODO fix default value to src_rank.parent_id
-        # default=lambda self: self.env.ref(
-        #     "src_rank.parent_id", raise_if_not_found=False
-        # ),
-        # compute="_compute_rank",
         store=True,
         required=True,
         readonly=True,
@@ -223,19 +227,17 @@ class RankTransferLine(models.Model):
     def _compute_rank(self):
         if self.employee_id.rank_id:
             self.src_rank = self.employee_id.rank_id
-            # self.dst_rank = self.employee_id.rank_id.parent_id
         else:
             self.src_rank = False
-            # self.dst_rank = False
 
     @api.onchange("employee_id")
     def _onchange_employee(self):
         if self.employee_id:
             self.src_rank = self.employee_id.rank_id
             self.dst_rank = self.employee_id.rank_id.parent_id
-        # else:
-        #     self.src_rank = False
-        #     self.dst_rank = False
+        else:
+            self.src_rank = False
+            self.dst_rank = False
 
 
 class HrEmployee(models.Model):
@@ -261,7 +263,6 @@ class HrEmployee(models.Model):
                 ('employee_id', '=', employee.id),
                 ('state', '=', 'done'),
             ]
-            rank_transfer_id = self.env['rank.transfer.line'].search(domain, limit=1, order='date desc')
-            # _logger.warning([product.name, last_line_id])
+            rank_transfer_id = self.env['rank.transfer.line'].search(domain, limit=1,
+                                                                     order='date desc')
             employee.rank_transfer_id = rank_transfer_id.transfer_id
-            # employee.last_job_transfer_date = last_job_transfer_id.date if last_job_transfer_id else False

@@ -173,7 +173,7 @@ msgstr "<span class=\"o_form_label o_hr_form_label cursor-default\">Закрит
 #: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
 msgid "<span class=\"o_form_label o_hr_form_label cursor-default\">Detailed Reason</span>"
 msgstr ""
-"<span class=\"o_form_label o_hr_form_label cursor-default\">Деталізована причина</span>"
+"<span class=\"o_form_label o_hr_form_label cursor-default\">Причина</span>"
 
 #. module: hr
 #: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form

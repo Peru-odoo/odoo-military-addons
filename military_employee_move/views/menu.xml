@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem
+                id="menu_hr_move"
+                name="Personell Move"
+                parent="hr.menu_hr_root"
+                groups="hr.group_hr_user"
+        />
+
+        <menuitem
+                id="menu_hr_move_tree"
+                action="military_employee_move.action_hr_move"
+                name="Personell Move"
+                sequence="1"
+                parent="military_employee_move.menu_hr_move"
+                groups="hr.group_hr_user"
+        />
+
+        <menuitem
+                id="menu_hr_work_location_tree"
+                action="hr_work_location_action"
+                parent="military_employee_move.menu_hr_move"
+                sequence="5"
+                groups="hr.group_hr_user"
+        />
+
+        <menuitem
+                id="menu_hr_move_type"
+                action="open_hr_move_type"
+                parent="military_employee_move.menu_hr_move"
+                sequence="6"
+                groups="hr.group_hr_user"
+        />
+    </data>
+</odoo>

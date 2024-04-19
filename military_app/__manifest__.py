@@ -17,15 +17,14 @@
         ],
     "data": [
         "data/res.country.state.csv",
+        "data/company_data.xml",
              ],
     "demo": [
-        "demo/res_users_demo.xml",
         "demo/archive_partner_demo.xml",
         "demo/archive_hr_demo.xml",
-        "demo/archive_recruitment_demo.xml",
+        # "demo/archive_recruitment_demo.xml",
              ],
     "sequence": '0',
     "application": True,
     "auto_install": True,
-    "installable": True,
 }

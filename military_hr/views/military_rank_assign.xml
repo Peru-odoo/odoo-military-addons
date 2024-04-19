@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="rank_assignment_tree_view" model="ir.ui.view">
+        <field name="name">rank.assign.tree</field>
+        <field name="model">rank.assign</field>
+        <field name="arch" type="xml">
+            <tree string="Rank Assignments">
+                <field name="date"/>
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="rank_assign_form" model="ir.ui.view">
+        <field name="name">rank.assign.form</field>
+        <field name="model">rank.assign</field>
+        <field name="arch" type="xml">
+            <form string="Rank Assign">
+                <header>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        states="draft"
+                        string="Confirm"
+                        class="oe_highlight"
+                        groups="military_hr.military_hr_manager"
+                    />
+                    <button
+                        name="action_assign"
+                        type="object"
+                        states="confirm"
+                        string="Assign"
+                        class="oe_highlight"
+                        groups="military_hr.military_hr_manager"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        states="confirm,pending"
+                        string="Cancel"
+                        class="oe_highlight"
+                        groups="military_hr.military_hr_manager"
+                    />
+                    <button
+                        name="action_draft"
+                        type="object"
+                        states="cancel"
+                        string="Draft"
+                        class="oe_highlight"
+                        groups="military_hr.military_hr_manager"
+                    />
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="number"/>
+                            <field name="date"/>
+                            <field name="partner_id"/>
+                            <field
+                                name="company_id"
+                                groups="military_hr.military_hr_manager"
+                            />
+                            <field
+                                name="company_id"
+                                invisible="1"
+                                groups="!military_hr.military_hr_manager"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Assign Lines" name="assign_lines">
+                            <field
+                                name="assign_line"
+                                widget="section_and_note_one2many"
+                                mode="tree,kanban"
+                                attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                            >
+                                <tree string="Assign Lines" editable="bottom">
+                                    <control>
+                                        <create name="add_employee_control" string="Add"/>
+                                    </control>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="employee_id"/>
+                                    <field name="src_rank"/>
+                                    <field name="dst_rank"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="open_rank_assign" model="ir.actions.act_window">
+        <field name="name">Rank Assignments</field>
+        <field name="res_model">rank.assign</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

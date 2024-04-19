@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Employee Transfers">
                 <field name="date"/>
-                <field name="number"/>
+                <field name="name"/>
                 <field name="partner_id"/>
                 <field name="state"/>
             </tree>
@@ -56,9 +56,10 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="number"/>
+                        <field name="name"/>
                         <field name="date"/>
                         <field name="partner_id"/>
+                        <field name="origin"/>
                         <field
                                 name="company_id"
                                 groups="base.group_multi_company"
@@ -85,7 +86,8 @@
                                     <field name="employee_id"/>
                                     <field name="dst_job_id" placeholder="Leave empty to put at the desposal of commander" domain="[('expected_employees', '>', 0)]" options="{'no_quick_create': True}"/>
                                     <field name="temp" widget="boolean_toggle"/>
-                                    <field name="dst_department_id"/>
+                                    <field name="dst_department_id" options="{'no_quick_create': True}"/>
+                                    <field name="origin"/>
                                     <field name="src_job_id"/>
                                     <field name="src_department_id"/>
                                     <field name="state" invisible="1"/>
@@ -107,11 +109,12 @@
         <field name="res_model">hr.transfer</field>
         <field name="view_mode">tree,form</field>
     </record>
+
     <menuitem
         id="menu_hr_transfer"
         action="open_hr_transfer"
-        parent="hr.menu_human_resources_configuration"
-        sequence="1"
+        parent="military_job.menu_hr_job"
+        sequence="2"
     />
 
 </odoo>
